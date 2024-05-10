@@ -21,7 +21,7 @@ const Navbar = () => {
 
     return (
         <div>
-            <div className="navbar bg-base-100 shadow-xl h-20">
+            <div className="navbar bg-base-100 shadow-xl h-20 sticky top-0">
                 <div className="navbar-start">
                     <div className="dropdown">
                         <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -35,7 +35,7 @@ const Navbar = () => {
                     <Link to={'/'} className="btn btn-ghost text-xl"><img className="rounded-full h-[50px] w-[50px]" src={logo} alt="" /><span className="text-2xl text-green-500">ScholarNet</span></Link>
                 </div>
                 <div className=" navbar-end  hidden lg:flex">
-                    <ul className="menu menu-horizontal px-1 space-x-3">
+                    <ul className="menu menu-horizontal px-1 space-x-4">
                         <NavLink
                             className={({ isActive }) =>
                                 isActive ? 'text-green-500 font-bold underline underline-offset-4' : 'font-bold'
@@ -71,7 +71,7 @@ const Navbar = () => {
                     </ul>
                 </div>
                 <div className="ml-10">
-                    <a className="btn">Login</a>
+                    <a className="btn btn-sm">Login</a>
                     <label className="swap swap-rotate">
 
                         {/* this hidden checkbox controls the state */}
