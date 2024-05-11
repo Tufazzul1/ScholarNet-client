@@ -1,9 +1,23 @@
 import { Link, NavLink } from "react-router-dom";
 import logo from '../../public/book-and-studen-logo-free-vector.jpg'
 import { useEffect, useState } from "react";
+import useAuth from "../hooks/useAuth";
 
 
 const Navbar = () => {
+
+    const { user, logOut } = useAuth();
+    console.log(user)
+
+    const handleSignOut = () => {
+        logOut()
+            .then(result => {
+                console.log(result)
+            })
+            .catch(error => {
+                console.log(error)
+            })
+    }
 
     const [theme, setTheme] = useState('light');
     useEffect(() => {
@@ -21,18 +35,48 @@ const Navbar = () => {
 
     return (
         <div>
-            <div className="navbar bg-base-100 shadow-xl h-20 sticky top-0">
+            <div className="navbar bg-base-100 shadow-xl h-20">
                 <div className="navbar-start">
                     <div className="dropdown">
                         <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
                         </div>
-                        <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-                            <li><a>Item 1</a></li>
-                            <li><a>Item 3</a></li>
+                        <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-50 p-2 shadow bg-base-100 rounded-box w-52">
+                            <NavLink
+                                className={({ isActive }) =>
+                                    isActive ? 'text-green-500 font-bold underline underline-offset-4' : 'font-bold'
+                                }
+                                to='/'
+                            >
+                                Home
+                            </NavLink>
+                            <NavLink
+                                className={({ isActive }) =>
+                                    isActive ? 'text-green-500 font-bold underline underline-offset-4' : 'font-bold'
+                                }
+                                to='/addBook'
+                            >
+                                Add Book
+                            </NavLink>
+                            <NavLink
+                                className={({ isActive }) =>
+                                    isActive ? 'text-green-500 font-bold underline underline-offset-4' : 'font-bold'
+                                }
+                                to='/allBooks'
+                            >
+                                All Books
+                            </NavLink>
+                            <NavLink
+                                className={({ isActive }) =>
+                                    isActive ? 'text-green-500 font-bold underline underline-offset-4' : 'font-bold'
+                                }
+                                to='/borrowedBooks'
+                            >
+                                Borrowed Books
+                            </NavLink>
                         </ul>
                     </div>
-                    <Link to={'/'} className="btn btn-ghost text-xl"><img className="rounded-full h-[50px] w-[50px]" src={logo} alt="" /><span className="text-2xl text-green-500">ScholarNet</span></Link>
+                    <Link to={'/'} className="btn btn-ghost text-xl"><img className="rounded-full h-[50px] w-[50px]" src={logo} alt="" /><span className="text-lg md:text-2xl text-green-500">ScholarNet</span></Link>
                 </div>
                 <div className=" navbar-end  hidden lg:flex">
                     <ul className="menu menu-horizontal px-1 space-x-4">
@@ -70,8 +114,29 @@ const Navbar = () => {
                         </NavLink>
                     </ul>
                 </div>
-                <div className="ml-10">
-                    <a className="btn btn-sm">Login</a>
+                <div className="ml-10 space-x-2">
+                    {
+                        user ? '' : <NavLink to={'/login'} className="btn btn-sm">Login</NavLink>
+                    }
+
+                    {
+                        user ? <div className="dropdown dropdown-end z-50">
+                            <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+                                <div className="w-10 rounded-full">
+                                    <img alt="Tailwind CSS Navbar component" src={user.photoURL || "https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"} />
+                                </div>
+                            </div>
+                            <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52 z-50">
+
+                                <li className='mb-3'>Name :{user?.displayName}</li>
+                                <li className='mb-3'>Email :{user?.email}</li>
+                                <button onClick={handleSignOut} className='btn btn-sm '>Log Out</button>
+                            </ul>
+                        </div> : <NavLink to='/register'>
+                            <button className='btn btn-sm bg-green-500 hover:bg-transparent border-green-500 hover:border-green-500 text-white'> Reister</button>
+                        </NavLink>
+                    }
+                    
                     <label className="swap swap-rotate">
 
                         {/* this hidden checkbox controls the state */}
