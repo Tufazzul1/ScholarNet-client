@@ -28,7 +28,7 @@ import ErrorPage from "../pages/ErrorPage";
         },
         {
             path: '/allBooks',
-            element: <PrivateRoutes><AllBooks></AllBooks></PrivateRoutes>
+            element: <PrivateRoutes><AllBooks></AllBooks></PrivateRoutes>,
         },
         {
             path: '/borrowedBooks',

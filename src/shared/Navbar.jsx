@@ -7,7 +7,7 @@ import useAuth from "../hooks/useAuth";
 const Navbar = () => {
 
     const { user, logOut } = useAuth();
-    console.log(user)
+    // console.log(user)
 
     const handleSignOut = () => {
         logOut()
@@ -133,7 +133,7 @@ const Navbar = () => {
                                 <button onClick={handleSignOut} className='btn btn-sm '>Log Out</button>
                             </ul>
                         </div> : <NavLink to='/register'>
-                            <button className='btn btn-sm bg-green-500 hover:bg-transparent border-green-500 hover:border-green-500 text-white'> Reister</button>
+                            <button className='btn btn-sm bg-green-500 hover:bg-transparent border-green-500 hover:border-green-500 '> Reister</button>
                         </NavLink>
                     }
                     
