@@ -12,7 +12,6 @@ const AllBooks = () => {
         const fetchData = async () => {
             try {
                 const response = await axiosSecure.get('/allBooks');
-                console.log(response.data)
                 setAllBooks(response.data);
             } catch (error) {
                 console.log(error)

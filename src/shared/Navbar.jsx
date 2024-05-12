@@ -44,7 +44,7 @@ const Navbar = () => {
                         <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-50 p-2 shadow bg-base-100 rounded-box w-52">
                             <NavLink
                                 className={({ isActive }) =>
-                                    isActive ? 'text-green-500 font-bold underline underline-offset-4' : 'font-bold'
+                                    isActive ? 'text-green-500 font-bold ' : 'font-bold'
                                 }
                                 to='/'
                             >
@@ -82,7 +82,7 @@ const Navbar = () => {
                     <ul className="menu menu-horizontal px-1 space-x-4">
                         <NavLink
                             className={({ isActive }) =>
-                                isActive ? 'text-green-500 font-bold underline underline-offset-4' : 'font-bold'
+                                isActive ? 'text-green-500 font-bold ' : 'font-bold'
                             }
                             to='/'
                         >
@@ -90,7 +90,7 @@ const Navbar = () => {
                         </NavLink>
                         <NavLink
                             className={({ isActive }) =>
-                                isActive ? 'text-green-500 font-bold underline underline-offset-4' : 'font-bold'
+                                isActive ? 'text-green-500 font-bold ' : 'font-bold'
                             }
                             to='/addBook'
                         >
@@ -98,7 +98,7 @@ const Navbar = () => {
                         </NavLink>
                         <NavLink
                             className={({ isActive }) =>
-                                isActive ? 'text-green-500 font-bold underline underline-offset-4' : 'font-bold'
+                                isActive ? 'text-green-500 font-bold ' : 'font-bold'
                             }
                             to='/allBooks'
                         >
@@ -106,7 +106,7 @@ const Navbar = () => {
                         </NavLink>
                         <NavLink
                             className={({ isActive }) =>
-                                isActive ? 'text-green-500 font-bold underline underline-offset-4' : 'font-bold'
+                                isActive ? 'text-green-500 font-bold ' : 'font-bold'
                             }
                             to='/borrowedBooks'
                         >

@@ -90,11 +90,11 @@ const AddBook = () => {
                         <span className="label-text">Category</span>
                         <select className="input h-[40px] input-bordered w-full" name="category">
                             <option value="">--Select category--</option>
-                            <option value="novel">Novel</option>
-                            <option value="thriller">Thriller</option>
-                            <option value="history">History</option>
-                            <option value="drama">Drama</option>
-                            <option value="sci-Fi">Sci-Fi</option>
+                            <option value="Novel">Novel</option>
+                            <option value="Thriller">Thriller</option>
+                            <option value="History">History</option>
+                            <option value="Drama">Drama</option>
+                            <option value="Sci-Fi">Sci-Fi</option>
                         </select>
                     </label>
                     <label className="form-control w-full">

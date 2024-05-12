@@ -11,6 +11,8 @@ import Login from "../pages/Login";
 import Register from "../pages/Register";
 import PrivateRoutes from "./PrivateRoutes";
 import ErrorPage from "../pages/ErrorPage";
+import UpdateBooks from "../pages/UpdateBooks";
+import SpaceCategory from "../components/SpaceCategory";
 
   const router = createBrowserRouter([
     {
@@ -33,6 +35,14 @@ import ErrorPage from "../pages/ErrorPage";
         {
             path: '/borrowedBooks',
             element: <PrivateRoutes><BorrowedBooks></BorrowedBooks></PrivateRoutes>
+        },
+        {
+            path: '/categories/:category',
+            element: <PrivateRoutes><SpaceCategory></SpaceCategory></PrivateRoutes>
+        },
+        {
+            path: '/update/:id',
+            element: <PrivateRoutes><UpdateBooks></UpdateBooks></PrivateRoutes>,
         },
         {
             path: '/login',

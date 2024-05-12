@@ -9,6 +9,7 @@ import 'swiper/css/navigation';
 
 // import required modules
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
+import { Link } from 'react-router-dom';
 
 const Banner = () => {
     return (
@@ -35,7 +36,7 @@ const Banner = () => {
                             <div className="lg:w-2/4 p-6 md:ml-16">
                                 <h1 className="mb-5 text-3xl pt-10 md:text-5xl font-bold">Welcome to <span className='text-green-500'>ScholarNet</span></h1>
                                 <p className="mb-5"> Explore our latest book arrivals and embark on exciting literary journeys. From captivating adventures to thought-provoking stories, there's something for every reader in our diverse collection. Dive into new worlds and let your imagination soar!</p>
-                                <button className="btn bg-green-500 hover:bg-transparent border-green-500 hover:border-green-500"><span className='text-white'>Get started</span></button>
+                                <Link to={'/allBooks'} className="btn bg-green-500 hover:bg-transparent border-green-500 hover:border-green-500"><span className='text-white'>All Books</span></Link>
                             </div>
                         </div>
                     </div>
@@ -47,7 +48,7 @@ const Banner = () => {
                             <div className="lg:w-2/4 p-6 md:ml-16">
                                 <h1 className="mb-5 text-3xl pt-10 md:text-5xl font-bold">Join the Reading Revolution</h1>
                                 <p className="mb-5"> Get ready for a reading revolution at our library! Join us for upcoming events, including author talks, book clubs, and reading challenges. </p>
-                                <button className="btn bg-green-500 hover:bg-transparent border-green-500 hover:border-green-500"><span className='text-white'>Get started</span></button>
+                                <Link to={'/allBooks'} className="btn bg-green-500 hover:bg-transparent border-green-500 hover:border-green-500"><span className='text-white'>All Books</span></Link>
                             </div>
                         </div>
                     </div>
@@ -59,7 +60,7 @@ const Banner = () => {
                             <div className="lg:w-2/4 p-6 md:ml-16">
                                 <h1 className="mb-5 text-3xl pt-10 md:text-5xl font-bold">Unlock Knowledge & Inspiration</h1>
                                 <p className="mb-5">Experience the power of knowledge and inspiration at our library. From research assistance to digital resources, we provide tools and resources to fuel your academic curiosity and creative pursuits.</p>
-                                <button className="btn bg-green-500 hover:bg-transparent border-green-500 hover:border-green-500"><span className='text-white'>Get started</span></button>
+                                <Link to={'/allBooks'} className="btn bg-green-500 hover:bg-transparent border-green-500 hover:border-green-500"><span className='text-white'>All Books</span></Link>
                             </div>
                         </div>
                     </div>
