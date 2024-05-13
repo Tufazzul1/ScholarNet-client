@@ -13,6 +13,7 @@ import PrivateRoutes from "./PrivateRoutes";
 import ErrorPage from "../pages/ErrorPage";
 import UpdateBooks from "../pages/UpdateBooks";
 import SpaceCategory from "../components/SpaceCategory";
+import BookDetails from "../pages/BookDetails";
 
   const router = createBrowserRouter([
     {
@@ -39,6 +40,10 @@ import SpaceCategory from "../components/SpaceCategory";
         {
             path: '/categories/:category',
             element: <PrivateRoutes><SpaceCategory></SpaceCategory></PrivateRoutes>
+        },
+        {
+            path: '/details/:id',
+            element: <PrivateRoutes><BookDetails></BookDetails></PrivateRoutes>
         },
         {
             path: '/update/:id',
