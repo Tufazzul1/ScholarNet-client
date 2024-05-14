@@ -34,7 +34,7 @@ import BookDetails from "../pages/BookDetails";
             element: <PrivateRoutes><AllBooks></AllBooks></PrivateRoutes>,
         },
         {
-            path: '/borrowedBooks',
+            path: '/borrow',
             element: <PrivateRoutes><BorrowedBooks></BorrowedBooks></PrivateRoutes>
         },
         {

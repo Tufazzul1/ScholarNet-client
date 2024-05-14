@@ -108,7 +108,7 @@ const Navbar = () => {
                             className={({ isActive }) =>
                                 isActive ? 'text-green-500 font-bold ' : 'font-bold'
                             }
-                            to='/borrowedBooks'
+                            to='/borrow'
                         >
                             Borrowed Books
                         </NavLink>

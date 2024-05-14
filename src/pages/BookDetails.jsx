@@ -1,10 +1,11 @@
-import {  useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import useAxios from "../hooks/useAxios";
 import { useEffect, useState } from "react";
 import Rating from "react-rating";
 import { IoIosStarOutline } from "react-icons/io";
 import { FaStar } from "react-icons/fa";
 import useAuth from "../hooks/useAuth";
+import Swal from "sweetalert2";
 
 const BookDetails = () => {
     const { user } = useAuth()
@@ -22,19 +23,38 @@ const BookDetails = () => {
             }
         };
         fetchBookData();
-    }, [axiosSecure, id]);
+    }, [axiosSecure, id]); 
 
     const handleBorrow = e => {
         e.preventDefault();
         const form = e.target;
-        const name = form.name.value;
+        const displayName = form.name.value;
         const email = form.email.value;
         const borrow = form.borrow.value;
         const bookReturn = form.returnDate.value;
+        const { image, name, category } = bookDetails; 
 
-        console.log(name, email, borrow, bookReturn)
+        const borrowBooks = { displayName, email, borrow, bookReturn, image, name, category };
+
+        axiosSecure.post('/borrow', borrowBooks)
+            .then(response => {
+                console.log(response.data);
+                if (response.data.insertedId) {
+                    Swal.fire({
+                        title: 'Success',
+                        text: 'Book borrowed successfully',
+                        icon: 'success',
+                        confirmButtonText: 'Ok'
+                    })
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
 
     }
+
+
 
     return (
         <div>
@@ -53,28 +73,29 @@ const BookDetails = () => {
                         fullSymbol={<FaStar className='text-orange-500' />}
                         readonly
                     /></p>
-                    <h2> <span className="font-bold">Author :</span> {bookDetails.author}</h2>
+                    <h2 className="mt-8"> <span className="font-bold">Author :</span> {bookDetails.author}</h2>
                     <h2> <span className="font-bold">Category :</span> {bookDetails.category}</h2>
                     <h2> <span className="font-bold">Quantity :</span> {bookDetails.quantity}</h2>
                     <h2> <span className="font-bold">description :</span> {bookDetails.description}</h2>
 
                     <div>
-                        {/* Open the modal using document.getElementById('ID').showModal() method */}
-                        <button className="btn" onClick={() => document.getElementById('my_modal_5').showModal()}>Borrow</button>
+                        <button className="btn mt-10 font-bold bg-green-500 hover:bg-transparent border-green-500 hover:border-green-500" onClick={() => document.getElementById('my_modal_5').showModal()}>Borrow</button>
+
                         <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
-                            <form onSubmit={handleBorrow} className="modal-box mx-auto">
+
+                            <form onSubmit={handleBorrow} className="modal-box flex flex-col items-center">
                                 <label className="form-control w-full max-w-xs">
                                     <div className="label">
                                         <span className="label-text font-bold">Borrow Date</span>
                                     </div>
-                                    <input type="date" name="borrow" placeholder="Borrow Date" className="input input-bordered w-full max-w-xs" />
+                                    <input type="date" required name="borrow" placeholder="Borrow Date" className="input input-bordered w-full max-w-xs" />
 
                                 </label>
                                 <label className="form-control w-full max-w-xs">
                                     <div className="label">
                                         <span className="label-text font-bold">Return Date</span>
                                     </div>
-                                    <input type="date" name="returnDate" placeholder="Return Date" className="input input-bordered w-full max-w-xs" />
+                                    <input type="date" required name="returnDate" placeholder="Return Date" className="input input-bordered w-full max-w-xs" />
 
                                 </label>
                                 <label className="form-control w-full max-w-xs">
@@ -92,7 +113,7 @@ const BookDetails = () => {
 
                                 </label>
                                 <div className="modal-action">
-                                <input type="submit" className="btn" value="Confirm" />
+                                    <input type="submit" className="btn w-full font-bold bg-green-500 hover:bg-transparent border-green-500 hover:border-green-500" value="Confirm" />
                                 </div>
                             </form>
                         </dialog>

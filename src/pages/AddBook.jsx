@@ -92,7 +92,6 @@ const AddBook = () => {
                             <option value="">--Select category--</option>
                             <option value="Novel">Novel</option>
                             <option value="Thriller">Thriller</option>
-                            <option value="History">History</option>
                             <option value="Fantasy">Fantasy</option>
                             <option value="Sci-Fi">Sci-Fi</option>
                         </select>
