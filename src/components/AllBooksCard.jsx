@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { FaStar } from 'react-icons/fa';
 import { IoIosStarOutline } from 'react-icons/io';
 import Rating from 'react-rating';
+import { Link } from 'react-router-dom';
 
 const AllBooksCard = ({ book , handleUpdate}) => {
     const [isHovered, setIsHovered] = useState(false);
@@ -24,7 +25,7 @@ const AllBooksCard = ({ book , handleUpdate}) => {
                     <div className="badge bg-orange-300 text-black">{author}</div>
                     <div className="badge bg-green-500 text-black">{category}</div>
                     <div className="card-actions justify-end">
-                        <button onClick={handleUpdate} className="btn border-green-500 w-full btn-sm hover:bg-green-500">Update</button>
+                        <Link to={`/update/${_id}`} className="btn border-green-500 w-full btn-sm hover:bg-green-500">Update</Link>
                     </div>
                 </div>
             </div>
