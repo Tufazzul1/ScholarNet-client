@@ -18,36 +18,37 @@ const AddBook = () => {
         const category = form.category.value;
         const rating = form.rating.value;
         const description = form.description.value;
+        const contents = form.contents.value;
         const UserName = user.displayName;
         const email = user.email
 
-        const newBooks = { name, photo, quantity, author, category, rating, description, UserName, email }
+        const newBooks = { name, image: photo, quantity, author, category, rating, description, contents, UserName, email }
         console.log(newBooks);
 
         // send books to all books
 
         axiosSecure.post('/allBooks', newBooks)
-        .then(response => {
-            console.log(response.data);
-            if(response.data.insertedId){
-                Swal.fire({
-                    title: 'Success',
-                    text: 'Book inserted successfully',
-                    icon: 'success',
-                    confirmButtonText: 'Ok'
-                  })
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        });
+            .then(response => {
+                console.log(response.data);
+                if (response.data.insertedId) {
+                    Swal.fire({
+                        title: 'Success',
+                        text: 'Book inserted successfully',
+                        icon: 'success',
+                        confirmButtonText: 'Ok'
+                    })
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
 
 
     }
     return (
-        <div className="w-3/4 mx-auto mt-10 border p-6">
+        <div className="lg:w-3/4 mx-auto mt-10 border p-6">
             <div className="flex justify-center items-center" style={{ backgroundImage: 'url(https://i.ibb.co/kSSKbmC/pexels-pixabay-415071-1.jpg)', backgroundSize: 'cover', height: '200px' }}>
-                <h2 className="text-4xl font-bold text-green-500">Add Books</h2>
+                <h2 className="text-4xl font-bold text-green-500">Add Booksss</h2>
             </div>
             <form onSubmit={handleAddBook} className="space-y-4">
                 {/* name and image */}
@@ -104,13 +105,19 @@ const AddBook = () => {
 
                     </label>
                 </div>
-                {/* description */}
-                <div>
+                {/* description and content */}
+                <div className="flex flex-col md:flex-row gap-4">
                     <label className="form-control w-full">
                         <div className="label">
                             <span className="label-text">Description</span>
                         </div>
                         <input type="text" name="description" placeholder="Description" className="input input-bordered w-full" />
+                    </label>
+                    <label className="form-control w-full">
+                        <div className="label">
+                            <span className="label-text">Content</span>
+                        </div>
+                        <input type="text" name="contents" placeholder="Content" className="input input-bordered w-full" />
                     </label>
                 </div>
                 <input type="submit" value="Add Book" className="w-full btn border-green-500 hover:bg-green-500" />

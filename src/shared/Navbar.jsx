@@ -70,7 +70,7 @@ const Navbar = () => {
                                 className={({ isActive }) =>
                                     isActive ? 'text-green-500 font-bold underline underline-offset-4' : 'font-bold'
                                 }
-                                to='/borrowedBooks'
+                                to='/borrow'
                             >
                                 Borrowed Books
                             </NavLink>

@@ -37,7 +37,7 @@ const UpdateBooks = () => {
         const author = form.author.value;
 
 
-        const bookInfo = { name, category, photo, rating, author }
+        const bookInfo = { name, category, image:photo, rating, author }
         
 
         try {

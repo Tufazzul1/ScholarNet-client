@@ -13,7 +13,7 @@ const BookDetails = () => {
     const { id } = useParams();
     const axiosSecure = useAxios();
     const [bookDetails, setBookDetails] = useState({});
-    const modalRef = useRef(null); 
+    const modalRef = useRef(null);
 
     useEffect(() => {
         const fetchBookData = async () => {
@@ -25,7 +25,7 @@ const BookDetails = () => {
             }
         };
         fetchBookData();
-    }, [axiosSecure, id]); 
+    }, [axiosSecure, id]);
 
     const handleBorrow = async (e) => {
         e.preventDefault();
@@ -34,7 +34,7 @@ const BookDetails = () => {
         const email = user?.email;
         const borrow = form.borrow.value;
         const bookReturn = form.returnDate.value;
-        const { image, name, category } = bookDetails; 
+        const { image, name, category } = bookDetails;
 
         const borrowBooks = { displayName, email, borrow, bookReturn, image, name, category };
         console.log(borrowBooks)
@@ -47,7 +47,7 @@ const BookDetails = () => {
                     icon: 'success',
                     confirmButtonText: 'Ok'
                 });
-                modalRef.current.close(); 
+                modalRef.current.close();
             }
         } catch (error) {
             console.error('Error:', error);
@@ -59,11 +59,11 @@ const BookDetails = () => {
             <div className="flex justify-center items-center" style={{ backgroundImage: 'url(https://i.ibb.co/kSSKbmC/pexels-pixabay-415071-1.jpg)', backgroundSize: 'cover', height: '200px' }}>
                 <h2 className="text-4xl font-bold text-green-500">Books Details</h2>
             </div>
-            <div className="flex md:flex-row flex-col mt-16 p-8 border max-w-fit mx-auto">
-                <div className="md:w-[30%]">
-                    <img src={bookDetails.image} alt={bookDetails.name} />
+            <div className="flex md:flex-row flex-col mt-16 p-8 border mx-auto md:w-[70%]">
+                <div className="md:flex-1m p-4">
+                    <img className="h-[400px] w-[270px]" src={bookDetails.image} alt={bookDetails.name} />
                 </div>
-                <div className="md:w-70% p-3 md:p-6">
+                <div className="md:flex-1 p-3 md:p-6">
                     <h2 className="text-4xl font-bold text-green-500">{bookDetails.name}</h2>
                     <p>
                         <Rating
@@ -77,9 +77,10 @@ const BookDetails = () => {
                     <h2> <span className="font-bold">Category :</span> {bookDetails.category}</h2>
                     <h2> <span className="font-bold">Quantity :</span> {bookDetails.quantity}</h2>
                     <h2> <span className="font-bold">Description :</span> {bookDetails.description}</h2>
+                    <h2> <span className="font-bold">Contents :</span> {bookDetails.contents}</h2>
 
                     <div>
-                        <button className="btn mt-10 font-bold bg-green-500 hover:bg-transparent border-green-500 hover:border-green-500" onClick={() => modalRef.current.showModal()}>Borrow</button>
+                        <button className="btn mt-6 font-bold bg-green-500 hover:bg-transparent border-green-500 hover:border-green-500" onClick={() => modalRef.current.showModal()}>Borrow</button>
 
                         <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle" ref={modalRef}>
                             <form onSubmit={handleBorrow} className="modal-box flex flex-col items-center">
