@@ -15,11 +15,12 @@ const Register = () => {
 
     const handleRegister = e => {
         e.preventDefault();
-        const form = new FormData(e.currentTarget);
-        const name = form.get('name');
-        const email = form.get('email');
-        const photo = form.get('photo');
-        const password = form.get('password');
+        const form = e.target;
+        const name = form.name.value;
+        const email = form.email.value;
+        const photo = form.photo.value;
+        const password = form.password.value;
+  
         console.log(name, email, photo, password)
 
         if (password.length < 6) {

@@ -1,7 +1,7 @@
 
 
 const BorrowedBooksCard = ({book , handleDelete}) => {
-    const {image, email, displayName, category, borrow, bookReturn}= book;
+    const {image, email, name, category, borrow, bookReturn}= book;
 
     return (
         <div>
@@ -10,8 +10,7 @@ const BorrowedBooksCard = ({book , handleDelete}) => {
                     <img className="h-[190px]" src={image} alt="" />
                 </div>
                 <div>
-                    <h2 className="">Email: {email}</h2>
-                    <h2 className="">Name: {displayName}</h2>
+                    <h2 className="">Name: {name}</h2>
                     <h2 className="">category: {category}</h2>
                     <h2 className="">Borrowed Date: {borrow}</h2>
                     <h2 className="">Return Date: {bookReturn}</h2>

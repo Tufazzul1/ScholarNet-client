@@ -3,7 +3,7 @@ import { FaStar } from 'react-icons/fa';
 import { IoIosStarOutline } from 'react-icons/io';
 import Rating from 'react-rating';
 
-const AllBooksCard = ({ book }) => {
+const AllBooksCard = ({ book , handleUpdate}) => {
     const [isHovered, setIsHovered] = useState(false);
     const { author, category, contents, description, id, image, name, quantity, rating, _id } = book;
     return (
@@ -24,7 +24,7 @@ const AllBooksCard = ({ book }) => {
                     <div className="badge bg-orange-300 text-black">{author}</div>
                     <div className="badge bg-green-500 text-black">{category}</div>
                     <div className="card-actions justify-end">
-                        <button className="btn border-green-500 w-full btn-sm hover:bg-green-500">Update</button>
+                        <button onClick={handleUpdate} className="btn border-green-500 w-full btn-sm hover:bg-green-500">Update</button>
                     </div>
                 </div>
             </div>

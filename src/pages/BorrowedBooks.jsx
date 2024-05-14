@@ -2,16 +2,18 @@ import { useEffect, useState } from "react";
 import useAxios from "../hooks/useAxios";
 import BorrowedBooksCard from "../components/BorrowedBooksCard";
 import Swal from "sweetalert2";
+import useAuth from "../hooks/useAuth";
 
 const BorrowedBooks = () => {
     const axiosSecure = useAxios();
+    const {user} = useAuth()
     const [borrowedBooks, setBorrowedBooks] = useState([]);
 
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axiosSecure.get('/borrow');
+                const response = await axiosSecure.get(`/borrow?email=${user.email}`);
                 setBorrowedBooks(response.data);
             } catch (error) {
                 console.log(error)
@@ -19,8 +21,7 @@ const BorrowedBooks = () => {
         };
 
         fetchData();
-    }, [axiosSecure]);
-    // console.log(borrowedBooks)
+    }, [axiosSecure, user]);
 
     const handleDelete = (_id) => {
         Swal.fire({

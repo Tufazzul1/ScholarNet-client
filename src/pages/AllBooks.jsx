@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import useAxios from "../hooks/useAxios";
 import AllBooksCard from "../components/AllBooksCard";
+import Swal from "sweetalert2";
 
 
 const AllBooks = () => {
@@ -20,6 +21,23 @@ const AllBooks = () => {
 
         fetchData();
     }, [axiosSecure]);
+
+    const handleUpdate = _id =>{
+        axiosSecure.patch(`/allBooks/${_id}`)
+        .then((res) => {
+            if (res.data.modifiedCount > 0) {
+                Swal.fire({
+                    title: "Update",
+                    text: "Book updated successfully.",
+                    icon: "success"
+                });
+                setAllBooks((prevList) => prevList.filter((item) => item._id !== _id));
+            }
+        })
+        .catch((error) => {
+            console.error('Error deleting book:', error);
+        });
+    }
     return (
         <div>
             <div>
@@ -31,6 +49,7 @@ const AllBooks = () => {
                         allBooks.map(book => <AllBooksCard
                              key={book._id}
                              book={book}
+                             handleUpdate={() => handleUpdate(book._id)}
                              ></AllBooksCard>)
                     }
                 </div>
