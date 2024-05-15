@@ -27,6 +27,33 @@ const BookDetails = () => {
         fetchBookData();
     }, [axiosSecure, id]);
 
+    // const handleBorrow = async (e) => {
+    //     e.preventDefault();
+    //     const form = e.target;
+    //     const displayName = user?.displayName;
+    //     const email = user?.email;
+    //     const borrow = form.borrow.value;
+    //     const bookReturn = form.returnDate.value;
+    //     const { image, name, category } = bookDetails;
+
+    //     const borrowBooks = { displayName, email, borrow, bookReturn, image, name, category };
+    //     console.log(borrowBooks)
+    //     try {
+    //         const response = await axiosSecure.post('/borrow', borrowBooks);
+    //         if (response.data.insertedId) {
+    //             Swal.fire({
+    //                 title: 'Success',
+    //                 text: 'Book borrowed successfully',
+    //                 icon: 'success',
+    //                 confirmButtonText: 'Ok'
+    //             });
+    //             modalRef.current.close();
+    //         }
+    //     } catch (error) {
+    //         console.error('Error:', error);
+    //     }
+    // };
+
     const handleBorrow = async (e) => {
         e.preventDefault();
         const form = e.target;
@@ -34,25 +61,38 @@ const BookDetails = () => {
         const email = user?.email;
         const borrow = form.borrow.value;
         const bookReturn = form.returnDate.value;
-        const { image, name, category } = bookDetails;
+        const { _id, image, name, category } = bookDetails;
 
-        const borrowBooks = { displayName, email, borrow, bookReturn, image, name, category };
-        console.log(borrowBooks)
+        const borrowBooks = { displayName, email, borrow, bookReturn, image, name, category, bookId: _id };
+
         try {
             const response = await axiosSecure.post('/borrow', borrowBooks);
-            if (response.data.insertedId) {
+            if (response?.data?.insertedId) {
                 Swal.fire({
                     title: 'Success',
                     text: 'Book borrowed successfully',
                     icon: 'success',
                     confirmButtonText: 'Ok'
                 });
+                setBookDetails((prevDetails) => ({
+                    ...prevDetails,
+                    quantity: prevDetails.quantity - 1
+                }));
                 modalRef.current.close();
             }
         } catch (error) {
             console.error('Error:', error);
+            if (error.response?.data?.error === 'Book out of stock') {
+                Swal.fire({
+                    title: 'Error',
+                    text: 'Book is out of stock',
+                    icon: 'error',
+                    confirmButtonText: 'Ok'
+                });
+            }
         }
     };
+
 
     return (
         <div>
@@ -80,7 +120,18 @@ const BookDetails = () => {
                     <h2> <span className="font-bold">Contents :</span> {bookDetails.contents}</h2>
 
                     <div>
-                        <button className="btn mt-6 font-bold bg-green-500 hover:bg-transparent border-green-500 hover:border-green-500" onClick={() => modalRef.current.showModal()}>Borrow</button>
+                        <div>
+                            {bookDetails.quantity > 0 ? (
+                                <button className="btn mt-6 font-bold bg-green-500 hover:bg-transparent border-green-500 hover:border-green-500" onClick={() => modalRef.current.showModal()}>
+                                    Borrow
+                                </button>
+                            ) : (
+                                <button className="btn mt-6 font-bold bg-gray-500 cursor-not-allowed" disabled>
+                                    Out of Stock
+                                </button>
+                            )}
+                        </div>
+
 
                         <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle" ref={modalRef}>
                             <form onSubmit={handleBorrow} className="modal-box flex flex-col items-center">
@@ -109,7 +160,7 @@ const BookDetails = () => {
                                     <input type="text" name="email" defaultValue={user.email} readOnly className="input input-bordered w-full max-w-xs" />
                                 </label>
                                 <div className="modal-action">
-                                    <input type="submit" className="btn w-full font-bold bg-green-500 hover:bg-transparent border-green-500 hover:border-green-500" value="Confirm" />
+                                    <input type="submit" className="btn w-full font-bold bg-green-500 hover:bg-transparent border-green-500 hover:border-green-500" value="Confirm" disabled={bookDetails.quantity === 0} />
                                 </div>
                             </form>
                         </dialog>
