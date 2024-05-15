@@ -6,7 +6,7 @@ import useAuth from "../hooks/useAuth";
 
 const BorrowedBooks = () => {
     const axiosSecure = useAxios();
-    const {user} = useAuth()
+    const { user } = useAuth()
     const [borrowedBooks, setBorrowedBooks] = useState([]);
 
 
@@ -23,33 +23,27 @@ const BorrowedBooks = () => {
         fetchData();
     }, [axiosSecure, user]);
 
-    const handleDelete = (_id) => {
-        Swal.fire({
-            title: "Are you sure?",
-            text: "You won't be able to revert this!",
-            icon: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, Return it!"
-        }).then((result) => {
-            if (result.isConfirmed) {
-                axiosSecure.delete(`/borrow/${_id}`)
-                    .then((res) => {
-                        if (res.data.deletedCount > 0) {
-                            Swal.fire({
-                                title: "Return!",
-                                text: "Book has been Returned.",
-                                icon: "success"
-                            });
-                            setBorrowedBooks((prevList) => prevList.filter((item) => item._id !== _id));
-                        }
-                    })
-                    .catch((error) => {
-                        console.error('Error deleting book:', error);
-                    });
+    const handleDelete = async (id) => {
+        try {
+            const response = await axiosSecure.delete(`/borrow/${id}`);
+            if (response.data.deleteResult.deletedCount > 0) {
+                Swal.fire({
+                    title: 'Success',
+                    text: 'Book returned successfully',
+                    icon: 'success',
+                    confirmButtonText: 'Ok'
+                });
+                setBorrowedBooks(borrowedBooks.filter(book => book._id !== id));
             }
-        });
+        } catch (error) {
+            console.error('Error:', error);
+            Swal.fire({
+                title: 'Error',
+                text: 'Failed to return book',
+                icon: 'error',
+                confirmButtonText: 'Ok'
+            });
+        }
     };
 
     return (
