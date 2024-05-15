@@ -1,5 +1,7 @@
 import Banner from "../components/Banner";
 import Categories from "../components/Categories";
+import BestSelling from "./BestSelling";
+import PopularWritter from "./PopularWritter";
 
 
 const Home = () => {
@@ -7,6 +9,8 @@ const Home = () => {
         <div>
             <Banner></Banner>
             <Categories></Categories>
+            <BestSelling></BestSelling>
+            <PopularWritter></PopularWritter>
         </div>
     );
 };

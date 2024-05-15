@@ -12,7 +12,7 @@ const Categories = () => {
         const fetchData = async () => {
             try {
                 const response = await axiosSecure.get('/categories');
-                console.log(response.data)
+                // console.log(response.data)
                 setCategories(response.data);
             } catch (error) {
                 console.log(error)

@@ -7,7 +7,7 @@ import useAuth from "../hooks/useAuth";
 const Navbar = () => {
 
     const { user, logOut } = useAuth();
-    console.log(user)
+    // console.log(user)
 
     const handleSignOut = () => {
         logOut()
@@ -114,7 +114,7 @@ const Navbar = () => {
                         </NavLink>
                     </ul>
                 </div>
-                <div className="ml-10 space-x-2">
+                <div className="ml-10 space-x-2">   
                     {
                         user ? '' : <NavLink to={'/login'} className="btn btn-sm">Login</NavLink>
                     }

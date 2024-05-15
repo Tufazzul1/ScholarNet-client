@@ -1,7 +1,6 @@
 import { GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from 'firebase/auth';
 import { createContext, useEffect, useState } from 'react';
 import app from '../firebase/firebase.config';
-import axios from 'axios';
 import useAxios from '../hooks/useAxios';
 
 
@@ -53,6 +52,7 @@ const AuthProvider = ({children}) => {
             const loggedUser = {email : userEmail}
             setUser(currentUser)
             setLoading(false)
+            // console.log(currentUser)
             // if user 
             if(currentUser){
                 axiosSecure.post('/jwt', loggedUser)
@@ -61,7 +61,7 @@ const AuthProvider = ({children}) => {
                 })
             }
             else{
-                axiosSecure.post('/logout', loggedUser)
+                axiosSecure.post('/logout', {email: user?.email})
                 .then(res => {
                     console.log(res.data)
                 })
@@ -70,7 +70,7 @@ const AuthProvider = ({children}) => {
         return () =>{
             unSubscribe();
         }
-    })
+    },[ user?.email, axiosSecure])
  
     const authInfo = {
         user,
