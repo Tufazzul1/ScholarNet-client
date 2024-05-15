@@ -27,6 +27,33 @@ const BookDetails = () => {
         fetchBookData();
     }, [axiosSecure, id]);
 
+    // const handleBorrow = async (e) => {
+    //     e.preventDefault();
+    //     const form = e.target;
+    //     const displayName = user?.displayName;
+    //     const email = user?.email;
+    //     const borrow = form.borrow.value;
+    //     const bookReturn = form.returnDate.value;
+    //     const { image, name, category } = bookDetails;
+
+    //     const borrowBooks = { displayName, email, borrow, bookReturn, image, name, category };
+    //     console.log(borrowBooks)
+    //     try {
+    //         const response = await axiosSecure.post('/borrow', borrowBooks);
+    //         if (response.data.insertedId) {
+    //             Swal.fire({
+    //                 title: 'Success',
+    //                 text: 'Book borrowed successfully',
+    //                 icon: 'success',
+    //                 confirmButtonText: 'Ok'
+    //             });
+    //             modalRef.current.close();
+    //         }
+    //     } catch (error) {
+    //         console.error('Error:', error);
+    //     }
+    // };
+
     const handleBorrow = async (e) => {
         e.preventDefault();
         const form = e.target;
@@ -40,7 +67,7 @@ const BookDetails = () => {
 
         try {
             const response = await axiosSecure.post('/borrow', borrowBooks);
-            if (response?.data?.insertedId) {
+            if (response.data.insertedId) {
                 Swal.fire({
                     title: 'Success',
                     text: 'Book borrowed successfully',
