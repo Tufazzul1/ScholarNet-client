@@ -23,13 +23,13 @@ const AddBook = () => {
         const email = user.email
 
         const newBooks = { name, image: photo, quantity, author, category, rating, description, contents, UserName, email }
-        console.log(newBooks);
+        // console.log(newBooks);
 
         // send books to all books
 
         axiosSecure.post('/allBooks', newBooks)
             .then(response => {
-                console.log(response.data);
+                // console.log(response.data);
                 if (response.data.insertedId) {
                     Swal.fire({
                         title: 'Success',

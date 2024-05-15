@@ -36,7 +36,7 @@ const BorrowedBooks = () => {
                 setBorrowedBooks(borrowedBooks.filter(book => book._id !== id));
             }
         } catch (error) {
-            console.error('Error:', error);
+            // console.error('Error:', error);
             Swal.fire({
                 title: 'Error',
                 text: 'Failed to return book',

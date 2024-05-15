@@ -30,7 +30,7 @@ const AllBooks = () => {
                 const response = await axiosSecure.get(`/allBooks`);
                 setAllBooks(response.data);
             } catch (error) {
-                console.log(error)
+                // console.log(error)
             }
         };
 

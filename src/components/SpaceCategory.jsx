@@ -17,12 +17,12 @@ const SpaceCategory = () => {
                 const response = await axios.get(`http://localhost:5000/categories/${category}`);
                 console.log(response.data);
             } catch (error) {
-                console.error('Error fetching data:', error);
+                // console.error('Error fetching data:', error);
             }
         };
         fetchData();
     }, [category]);
-    console.log(categoryBooks)
+    // console.log(categoryBooks)
 
     useEffect(() => {
         const fetchBookData = async () => {
@@ -32,7 +32,7 @@ const SpaceCategory = () => {
                 setCategoryBooks(filteredData);
 
             } catch (error) {
-                console.log(error)
+                // console.log(error)
             }
         };
 
