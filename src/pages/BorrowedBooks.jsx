@@ -3,6 +3,7 @@ import useAxios from "../hooks/useAxios";
 import BorrowedBooksCard from "../components/BorrowedBooksCard";
 import Swal from "sweetalert2";
 import useAuth from "../hooks/useAuth";
+import RecentlyViewedBooks from "../components/RecentlyViewedBooks ";
 
 const BorrowedBooks = () => {
     const axiosSecure = useAxios();
@@ -62,6 +63,7 @@ const BorrowedBooks = () => {
                     ))
                 }
             </div>
+            <RecentlyViewedBooks></RecentlyViewedBooks>
         </div>
     );
 };

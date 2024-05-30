@@ -27,6 +27,15 @@ const BookDetails = () => {
         fetchBookData();
     }, [axiosSecure, id]);
 
+    useEffect(() => {
+        const recentlyViewed = JSON.parse(localStorage.getItem('recentlyViewedBooks')) || [];
+        if (!recentlyViewed.some(item => item.id === bookDetails.id)) {
+          recentlyViewed.push(bookDetails);
+          
+          localStorage.setItem('recentlyViewedBooks', JSON.stringify(recentlyViewed));
+        }
+      }, [bookDetails]);
+
 
     const handleBorrow = async (e) => {
         e.preventDefault();
