@@ -62,7 +62,7 @@ const Login = () => {
     }
     return (
         <div>
-            <div style={{ backgroundImage: 'url(https://i.ibb.co/7nWL1b5/pexels-felixmittermeier-956999.jpg)',}} className='mt-5'>
+            <div className='mt-5'>
                 <div className="hero min-h-[550px] w-full p-10" >
                     <div className="card shrink-0 max-w-lg bg-base-100 bg-opacity-30 shadow-2xl  lg:w-1/2">
                         <div>
@@ -101,14 +101,14 @@ const Login = () => {
 
 
                             <div className="form-control mt-6">
-                                <button className="btn bg-green-500 hover:bg-transparent border-green-500 hover:border-green-500 text-white">Login</button>
+                                <button className="btn bg-green-500 hover:bg-transparent border-green-500 hover:border-green-500 text-black">Login</button>
                             </div>
                         </form>
 
                         <div className="text-center font-bold space-y-3">
                            
                             <h3>or Login with </h3>
-                            <button onClick={() => handleSocialLogin(signInWithGoogle)} className="btn bg-green-500 hover:bg-transparent border-green-500 hover:border-green-500 text-white w-[85%]"> <FaGoogle className='text-red-500 text-2xl' />Google</button>
+                            <button onClick={() => handleSocialLogin(signInWithGoogle)} className="btn bg-green-500 hover:bg-transparent border-green-500 hover:border-green-500 text-black w-[85%]"> <FaGoogle className='text-red-500 text-2xl' />Google</button>
 
                         </div>
                         <p className=" mb-4 mt-4 text-center">New in here ? Please <Link to={'/register'} className="text-blue-700 font-bold">Register</Link></p>

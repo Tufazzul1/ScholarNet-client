@@ -1,10 +1,14 @@
 
 import { useEffect, useState } from "react";
 import useAxios from "../hooks/useAxios";
+import Loading from "../components/Loading";
+import useAuth from "../hooks/useAuth";
 
 const BestSelling = () => {
     const axiosSecure = useAxios();
     const [bestSelling, setBestSelling] = useState([]);
+    const [isLoading , setIsLoading] = useState(true);
+    const { loading: authLoading } = useAuth();
 
     useEffect(() => {
         const fetchData = async () => {
@@ -14,10 +18,17 @@ const BestSelling = () => {
             } catch (error) {
                 console.log("Error fetching best selling books:", error);
             }
+            finally{
+                setIsLoading(false)
+            }
         };
 
         fetchData();
     }, [axiosSecure]);
+
+    if(isLoading || authLoading){
+        return <Loading />;
+    }
 
     return (
         <div className="lg:w-3/4 mx-auto">

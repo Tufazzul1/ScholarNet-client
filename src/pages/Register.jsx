@@ -57,7 +57,7 @@ const Register = () => {
     }
     return (
         <div>
-            <div style={{ backgroundImage: 'url(https://i.ibb.co/7nWL1b5/pexels-felixmittermeier-956999.jpg)' }} className='mt-5' >
+            <div className='mt-5' >
 
                 <div className="hero min-h-[550px] w-full p-10" >
 
@@ -120,12 +120,12 @@ const Register = () => {
 
 
                             <div className="form-control mt-6">
-                                <button className="btn bg-green-500 hover:bg-transparent border-green-500 hover:border-green-500 text-white">Register</button>
+                                <button className="btn bg-green-500 hover:bg-transparent border-green-500 hover:border-green-500 text-black">Register</button>
                             </div>
                         </form>
 
 
-                        <p className="text-center mb-4 mt-4 text-white">Already have an account ? Please <Link to={'/login'} className="text-blue-700 font-bold">Login</Link></p>
+                        <p className="text-center mb-4 mt-4">Already have an account ? Please <Link to={'/login'} className="text-blue-700 font-bold">Login</Link></p>
                     </div>
                 </div>
             </div>
